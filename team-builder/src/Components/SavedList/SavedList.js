@@ -14,8 +14,8 @@ const SavedList = props => {
                 </ul>
                 
             </div> */}
-            {list.map((l, value) => (
-                <div>
+            {list.map((l, index) => (
+                <div key={index}>
                     <li>{l.name}</li>
                     <li>{l.email}</li>
                     <li>{l.role}</li>

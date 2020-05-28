@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 
-const Form = () => {
+const Form = props => {
     const [teamMember, setTeamMember] = useState({
         name: '',
         email: '',
         role: ''
       })
+
+    // const {submitMember, history} = props;
 
       const handleChange = e => {
           setTeamMember({ ...teamMember, [e.target.name]: e.target.value })
@@ -13,8 +15,19 @@ const Form = () => {
 
       const handleSubmit = e => {
           e.preventDefault()
+          props.submitMember(teamMember)
+        //   history.push('/')
           console.log('submission made', teamMember)
+            setTeamMember({ name: '',
+            email: '',
+            role: ''
+            })
       }
+
+    //   const addTeamMember = () => {
+    //       const addTeamMember = addt
+    //       addTeamMember(teamMember)
+    //   }
       
     return (
         <div>
@@ -23,18 +36,21 @@ const Form = () => {
                     <input
                         type="text"
                         name="name"
+                        placeholder="name"
                         value={teamMember.name}
                         onChange={handleChange}
                     />
                     <input
                         type="text"
                         name="email"
+                        placeholder="email"
                         value={teamMember.email}
                         onChange={handleChange}
                     />
                     <input
                         type="text"
                         name="role"
+                        placeholder="role"
                         value={teamMember.role}
                         onChange={handleChange}
                     />

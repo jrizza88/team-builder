@@ -1,24 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Form from './Components/Forms/Form';
 import SavedList from "./Components/SavedList/SavedList";
 import Data from './Data';
 
 function App() {
-  // const [teamMember, setTeamMember] = useState({
-  //   name: '',
-  //   email: '',
-  //   role: ''
-  //   // dataSet: []
-  // })
   const [list, setList] = useState(Data)
 
-  useEffect(() => {
-    setList(Data)
-  }, [])
+
+  const AddToList = newTeamMember => {
+    setList([...list, newTeamMember])
+  }
 
   return (
     <div className="App">
+      <Form submitMember={AddToList}/> 
       <SavedList list={list} />
     </div>
   );
