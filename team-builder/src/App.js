@@ -1,39 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Form from './Components/Forms/Form';
-import SavedList from "./Components/SavedList/SavedList";
+//import SavedList from "./Components/SavedList/SavedList";
 import Data from './Data';
 
 function App() {
   const [teamList, setList] = useState(Data)
+  const [memberToEdit, setMemberToEdit] = useState(Data)
 
   const addToList = newTeamMember => {
-    const newMember = {
-      name: newTeamMember.name,
-      email: newTeamMember.email,
-      role: newTeamMember.role
-    }
-    setList([...teamList, newMember])
+    setList([...teamList, newTeamMember])
   }
 
-  const memberToEdit = editTeamMember => {
-   
-      setList([...teamList, editTeamMember])
-    
+  const editMember = editTeamMember => {
+    teamList.map( (member, index) => (
+       member.id === editTeamMember.id ? console.log('what\'s happening') : console.log(member.id)
+    ))
+    // teamList.find(m => (m.id===editTeamMember.id)).name = editTeamMember.name;
+    // teamList.find(m => (m.id===editTeamMember.id)).email = editTeamMember.email;
+    // teamList.find(m => (m.id===editTeamMember.id)).role = editTeamMember.role;
+    console.log('editMember function', editTeamMember)
+    setMemberToEdit([...teamList, editTeamMember])
+    // setMemberToEdit([])
   }
 
-  // useEffect(() => {
-
-  //       setList({
-  //           name: '',
-  //           email: '',
-  //           role: ''
-  //       })
-  //     }, [teamList])
 
   return (
     <div className="App">
-      <Form setListProps={addToList} list={teamList} /> 
+      <Form setListProps={addToList} list={teamList}  memberToEdit={memberToEdit} editMember={editMember}/> 
     </div>
   );
 }
