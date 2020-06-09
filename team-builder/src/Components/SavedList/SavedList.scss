@@ -1,0 +1,17 @@
+.savedPersonDiv{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    max-width: 800px;
+    border: 1px solid black;
+    background: lavender;
+}
+
+.individualPerson{
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 20px 200px;
+    justify-content: center;
+}

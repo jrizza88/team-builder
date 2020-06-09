@@ -1,33 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Data from '../../Data';
+const Form = ({setListProps, list}) => {
 
-const Form = props => {
     const [teamMember, setTeamMember] = useState({
         name: '',
         email: '',
         role: ''
       })
+    // const [list, setList] = useState(Data)
+ 
 
-    // const {submitMember, history} = props;
 
       const handleChange = e => {
           setTeamMember({ ...teamMember, [e.target.name]: e.target.value })
+          
       }
 
       const handleSubmit = e => {
           e.preventDefault()
-          props.submitMember(teamMember)
-        //   history.push('/')
+          setListProps(teamMember)
+       
           console.log('submission made', teamMember)
-            setTeamMember({ name: '',
+          console.log('the list', list)
+            setTeamMember({ 
+            name: '',
             email: '',
             role: ''
             })
+            
       }
 
-    //   const addTeamMember = () => {
-    //       const addTeamMember = addt
-    //       addTeamMember(teamMember)
-    //   }
       
     return (
         <div>
@@ -54,9 +56,21 @@ const Form = props => {
                         value={teamMember.role}
                         onChange={handleChange}
                     />
+                   
                 </label>
                 <button>Submit</button>
             </form>
+            <div className="savedPersonDiv">
+                <h1> Saved List </h1>
+            {list.map((l, index) => (
+                        <div className="individualPerson" key={index}>
+                            <li>{l.name}</li>
+                            <li>{l.email}</li>
+                            <li>{l.role}</li>
+                            <button>edit</button>
+                        </div>
+                    )) }
+                </div>
         </div>
     )
 }
